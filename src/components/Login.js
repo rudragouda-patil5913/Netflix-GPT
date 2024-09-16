@@ -1,8 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Header from "./Header";
+import { checkValid } from "../utils/validate";
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
+  const [message, setMessage] = useState(null);
+
+  const email = useRef(null);
+  const password = useRef(null);
+
+  const handleSubmit = () => {
+    let message = checkValid(email.current.value, password.current.value);
+    setMessage(message);
+  };
+
   return (
     <div>
       <Header />
@@ -13,7 +24,9 @@ const Login = () => {
           className="bg-gradient-to-b from-black"
         />
       </div>
-      <form className="absolute p-12 bg-black w-4/12 my-32 m-auto left-0 right-0 text-white rounded-lg bg-opacity-90">
+      <form
+        onSubmit={(e) => e.preventDefault()}
+        className="absolute p-12 bg-black w-4/12 my-32 m-auto left-0 right-0 text-white rounded-lg bg-opacity-90">
         <h1 className="font-bold text-3xl m-2 py-4">
           {isSignInForm ? "Sign In" : "Sign Up"}
         </h1>
@@ -26,25 +39,32 @@ const Login = () => {
         )}
         {!isSignInForm && (
           <input
-            type="number"
+            type="tel"
             placeholder="Phone number"
             className="px-2 py-4 my-2 w-full bg-transparent border border-slate-400 placeholder:text-slate-300 bg-opacity-60 rounded-lg"
           />
         )}
         <input
+          ref={email}
           type="email"
           placeholder="Email or mobile number"
           className="px-2 py-4 my-2 w-full bg-transparent border border-slate-400 placeholder:text-slate-300 bg-opacity-60 rounded-lg"
         />
         <input
+          ref={password}
           type="password"
           placeholder="Password"
+          autoComplete=""
           className="px-2 py-4 my-2 w-full bg-transparent border border-slate-400 placeholder:text-slate-300 bg-opacity-60 rounded-lg"
         />
-        <button className="p-2 my-6 bg-red-500 w-full rounded-lg">
-          {isSignInForm ? "Sign In" :" Sign Up"}
+        {message && <h1 className="text-red-600 text-lg font-semibold">{message}</h1>}
+        <button
+          className="p-2 my-6 bg-red-500 w-full rounded-lg"
+          onClick={handleSubmit}>
+          {isSignInForm ? "Sign In" : " Sign Up"}
         </button>
-        <p
+
+        <div
           onClick={() => {
             setIsSignInForm(!isSignInForm);
           }}>
@@ -59,7 +79,7 @@ const Login = () => {
               <span className="font-semibold">Sign In now.</span>
             </h1>
           )}
-        </p>
+        </div>
       </form>
     </div>
   );
