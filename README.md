@@ -26,6 +26,8 @@
 - Get the video my TMDB API and make a fetch request, filter the trailer
 - Add Trailer in redux store and get the trailer details from redux store and assign key render the iframe video of youtube link and make it autoplay.
 - Create Second Container contains Movies List
+- Create Movie List and Movie Card
+- Fetch different Movies from TMDB API and render them
 
 # Features
 

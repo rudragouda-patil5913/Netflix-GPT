@@ -1,12 +1,11 @@
 import React from "react";
-import { useSelector } from "react-redux";
 
 const VideoTitle = (props) => {
   const { original_title, overview } = props;
 
   return (
-    <div className=" w-screen aspect-video bg-gradient-to-r from-black px-[5%] py-[20%] bg-opacity-20 z-10">
-      <h1 className="font-bold text-4xl py-2 text-white m-1">
+    <div className=" w-screen aspect-video bg-gradient-to-r from-black px-[5%] bg-opacity-20 z-10">
+      <h1 className="font-bold text-4xl pt-[20%] text-white m-1">
         {original_title}
       </h1>
       <p className="font-semibold text-lg w-2/4 text-white m-1">{overview}</p>

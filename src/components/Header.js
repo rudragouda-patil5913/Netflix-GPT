@@ -44,7 +44,7 @@ const Header = () => {
       });
   };
   return (
-    <div className="flex flex-row justify-between absolute w-screen px-8 py-2 bg-gradient-to-b from-black z-20 opacity-100">
+    <div className="flex flex-row justify-between w-screen px-8 py-2 bg-gradient-to-b from-black relative z-20 opacity-100">
       <img className="w-44" src={NFX_LOGO} alt="logo" />
       {user && (
         <div className="w-2/12 flex flex-row justify-around">
