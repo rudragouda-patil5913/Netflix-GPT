@@ -1,4 +1,4 @@
-export const checkValidDataSignIn = ( email, password) => {
+export const checkValidDataSignIn = (email, password) => {
   const isEmail = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/.test(
     email
   );
@@ -23,4 +23,3 @@ export const checkValidDataSignUp = (name, email, password) => {
   if (!isPassword) return "Password Invalid!";
   return null;
 };
-

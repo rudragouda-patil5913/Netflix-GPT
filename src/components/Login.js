@@ -4,17 +4,16 @@ import { checkValidDataSignIn, checkValidDataSignUp } from "../utils/validate";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  updateProfile
+  updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
+import { BG_IMG } from "../utils/constant";
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const email = useRef(null);
@@ -59,14 +58,13 @@ const Login = () => {
               dispatch(
                 addUser({ uid: uid, email: email, displayName: displayName })
               );
-              navigate("/browse");
             })
             .catch((error) => {
               // An error occurred
               // ...
             });
           console.log(user);
-          
+
           // ...
         })
         .catch((error) => {
@@ -86,8 +84,6 @@ const Login = () => {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
-          console.log(user);
-          navigate("/browse");
           // ...
         })
         .catch((error) => {
@@ -102,11 +98,7 @@ const Login = () => {
     <div>
       <Header />
       <div className="absolute ">
-        <img
-          src="https://assets.nflxext.com/ffe/siteui/vlv3/85ff76db-39e5-423a-afbc-97d3e74db71b/null/IN-en-20240909-TRIFECTA-perspective_b22117e0-4610-4d57-a695-20f77d241a4a_large.jpg"
-          alt="bg-img"
-          className="w-full fixed"
-        />
+        <img src={BG_IMG} alt="bg-img" className="w-full fixed mt-0" />
       </div>
       <form
         onSubmit={(e) => e.preventDefault()}
