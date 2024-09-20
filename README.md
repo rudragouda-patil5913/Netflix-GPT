@@ -28,6 +28,14 @@
 - Create Second Container contains Movies List
 - Create Movie List and Movie Card
 - Fetch different Movies from TMDB API and render them
+- GPT search Feature build
+- Add a button to header and make a toggle feature to show GPT search component
+    if false show MainContainer and SecondContainer
+    else GPTSearch
+- Create Redux a Slice called GptSlice include action of toggle, later add it to store.
+- Create GptSearch Component and main GptSearchBar and GptMovieSuggestions.
+- Build Multilanguage Page of GPTSearch
+- 
 
 # Features
 

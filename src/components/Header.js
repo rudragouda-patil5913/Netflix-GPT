@@ -7,6 +7,7 @@ import { addUser, removeUser } from "../utils/userSlice";
 import { useDispatch } from "react-redux";
 import { onAuthStateChanged } from "firebase/auth";
 import { NFX_LOGO } from "../utils/constant";
+import { addToggleGptSearchView } from "../utils/gptSearchSlice";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -43,16 +44,25 @@ const Header = () => {
         navigate("/error");
       });
   };
+
+  const handleGptSearchClick = () => {
+    dispatch(addToggleGptSearchView());
+  };
   return (
     <div className="flex flex-row justify-between w-screen px-8 py-2 bg-gradient-to-b from-black relative z-20 opacity-100">
       <img className="w-44" src={NFX_LOGO} alt="logo" />
       {user && (
-        <div className="w-2/12 flex flex-row justify-around">
-          <h1 className="font-bold mt-2 bg-blue-300 h-6 w-10 text-center rounded-full">
+        <div className="w-3/12 flex flex-row justify-around">
+          <button
+            className="p-1 bg-slate-200 opacity-80 mr-4 text-slate-500 font-bold rounded-xl px-2 w-40 h-10"
+            onClick={handleGptSearchClick}>
+            GPT Search
+          </button>
+          <h1 className="font-bold m-2 bg-blue-300 h-6 w-10 text-center rounded-full">
             {user.email.toString().slice(0, 1).toUpperCase()}
           </h1>
           <button
-            className="font-bold bg-slate-100 rounded-xl p-1 w-30 h-10"
+            className="font-bold bg-slate-100 rounded-xl p-2 w-30 h-10"
             onClick={handleSignOut}>
             Sign Out
           </button>

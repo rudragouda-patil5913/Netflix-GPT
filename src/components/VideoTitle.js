@@ -11,11 +11,11 @@ const VideoTitle = (props) => {
       <p className="font-semibold text-lg w-2/4 text-white m-1">{overview}</p>
       <div className="mt-4">
         <button
-          className="w-40 m-1 mr-2 bg-white bg-opacity-50 text-slate-800 font-bold font-mono p-4 hover:bg-slate-500 hover:text-black
+          className="w-40 m-1 mr-2 bg-white text-black font-bold font-mono p-4 hover:bg-slate-500 hover:text-black
          hover:bg-opacity-50">
           ▶ Play
         </button>
-        <button className="w-40 bg-slate-500 bg-opacity-50 text-slate-800 font-bold font-mono p-4 hover:bg-white hover:text-black ">
+        <button className="w-40 bg-slate-500 bg-opacity-50 text-slate-200 font-bold font-mono p-4 hover:bg-white hover:text-black ">
           More Info ℹ{" "}
         </button>
       </div>

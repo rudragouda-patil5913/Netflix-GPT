@@ -5,18 +5,29 @@ import MainContainer from "./MainContainer";
 import SecondContainer from "./SecondContainer";
 import useTopRatedMovies from "../hooks/useTopRatedMovies";
 import useUpcomingMovies from "../hooks/useUpcomingMovies";
+import GptSearch from "./GptSearch";
+import { useSelector } from "react-redux";
 
 const Browse = () => {
+  const gptSearch = useSelector((store) => store.gptsearch);
+
   useNowPlayingMovies();
   usePopularMovies();
   useTopRatedMovies();
   useUpcomingMovies();
-
+  console.log(gptSearch);
   return (
     <div>
       <Header />
-      <MainContainer />
-      <SecondContainer />
+      {gptSearch?.gptToggleSearch ? (
+        <GptSearch />
+      ) : (
+        <>
+          <MainContainer />
+          <SecondContainer />
+        </>
+      )}
+
       {/* {
       - MainContainer
         - Movie Trailer running background
