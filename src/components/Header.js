@@ -6,14 +6,16 @@ import { useNavigate } from "react-router-dom";
 import { addUser, removeUser } from "../utils/userSlice";
 import { useDispatch } from "react-redux";
 import { onAuthStateChanged } from "firebase/auth";
-import { NFX_LOGO } from "../utils/constant";
+import { NFX_LOGO, SUPPORTED_LANGUAGES } from "../utils/constant";
 import { addToggleGptSearchView } from "../utils/gptSearchSlice";
+import { changeLanguage } from "../utils/configSlice";
 
 const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const user = useSelector((store) => store.user);
+  const gptToggle = useSelector((store) => store.gptsearch.gptToggleSearch);
 
   useEffect(() => {
     let unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -45,6 +47,10 @@ const Header = () => {
       });
   };
 
+  const handleLanguageChange = (e) => {
+    dispatch(changeLanguage(e.target.value));
+  };
+
   const handleGptSearchClick = () => {
     dispatch(addToggleGptSearchView());
   };
@@ -52,17 +58,30 @@ const Header = () => {
     <div className="flex flex-row justify-between w-screen px-8 py-2 bg-gradient-to-b from-black relative z-20 opacity-100">
       <img className="w-44" src={NFX_LOGO} alt="logo" />
       {user && (
-        <div className="w-3/12 flex flex-row justify-around">
+        <div className="w-4/12 flex flex-row justify-around">
+          {gptToggle && (
+            <select
+              name="languages"
+              id="lang"
+              className="m-4 p-2 bg-slate-300 font-bold w-30 h-10 rounded-xl"
+              onChange={handleLanguageChange}>
+              {SUPPORTED_LANGUAGES.map((lang) => (
+                <option key={lang.identifier} value={lang.name}>
+                  {lang.identifier}
+                </option>
+              ))}
+            </select>
+          )}
           <button
-            className="p-1 bg-slate-200 opacity-80 mr-4 text-slate-500 font-bold rounded-xl px-2 w-40 h-10"
+            className="p-2 bg-slate-300 m-4 font-bold rounded-xl w-40 h-10"
             onClick={handleGptSearchClick}>
-            GPT Search
+            {gptToggle ? "Home" : "GPT Search"}
           </button>
-          <h1 className="font-bold m-2 bg-blue-300 h-6 w-10 text-center rounded-full">
+          <h1 className="font-bold m-4 p-2 bg-blue-300 h-10 w-16 text-center rounded-full">
             {user.email.toString().slice(0, 1).toUpperCase()}
           </h1>
           <button
-            className="font-bold bg-slate-100 rounded-xl p-2 w-30 h-10"
+            className="m-4 font-bold bg-slate-300 rounded-xl p-2 w-40 h-10"
             onClick={handleSignOut}>
             Sign Out
           </button>

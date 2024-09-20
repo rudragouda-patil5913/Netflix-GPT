@@ -4,9 +4,9 @@ import { BG_IMG } from "../utils/constant"
 
 const GptSearch = () => {
   return (
-    <div className="">
+    <div className="h-40 my-auto">
       <div>
-        <img src={BG_IMG} alt="bg-img" className="w-full fixed -mt-20 -z-10" />
+        <img src={BG_IMG} alt="bg-img" className="w-full absolute -mt-[20%] -z-10" />
       </div>
       <GptSearchBar />
       <GptMovieSuggestion />
