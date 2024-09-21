@@ -10,11 +10,13 @@ import { auth } from "../utils/firebase";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
 import { BG_IMG } from "../utils/constant";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const email = useRef(null);
   const password = useRef(null);
@@ -58,6 +60,7 @@ const Login = () => {
               dispatch(
                 addUser({ uid: uid, email: email, displayName: displayName })
               );
+              navigate("/browse");
             })
             .catch((error) => {
               // An error occurred
@@ -84,6 +87,7 @@ const Login = () => {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
+          navigate("/browse");
           // ...
         })
         .catch((error) => {
@@ -97,7 +101,7 @@ const Login = () => {
   return (
     <div>
       <Header />
-      <div className="absolute ">
+      <div className="absolute -z-10">
         <img src={BG_IMG} alt="bg-img" className="w-full fixed mt-0" />
       </div>
       <form

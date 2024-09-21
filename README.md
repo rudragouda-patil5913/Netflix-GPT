@@ -35,7 +35,7 @@
 - Create Redux a Slice called GptSlice include action of toggle, later add it to store.
 - Create GptSearch Component and main GptSearchBar and GptMovieSuggestions.
 - Build Multilanguage Page of GPTSearch
-- 
+
 
 # Features
 
