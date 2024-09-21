@@ -29,6 +29,3 @@ export const SUPPORTED_LANGUAGES = [
     name: "hi",
   },
 ];
-
-export const OPEN_API =
-  "sk-yAvcp3RdR91WmfJrLc1JMS1nX9PzxgXYqjCmNQ8Le3T3BlbkFJwX_dPxmvwdaP7ZPJ0PZDOTwdhl2VIF4--IpMjZmisA";
