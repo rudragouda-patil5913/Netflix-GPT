@@ -15,6 +15,7 @@ const usePathHook = (path) => {
         // https://firebase.google.com/docs/reference/js/auth.user
         const { uid, email, displayName } = user;
         dispatch(addUser({ uid: uid, email: email, displayName: displayName }));
+        // navigate("/browse");
         // ...
       } else {
         // User is signed out

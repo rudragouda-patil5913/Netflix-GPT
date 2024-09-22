@@ -10,7 +10,7 @@ const MainContainer = () => {
 
   const mainMovie = movies[0];
   return (
-    <div className="flex flex-col align-middle w-screen -mt-2">
+    <div className="flex flex-col align-middle w-screen md:-mt-2">
       <VideoTitle {...mainMovie} />
       <VideoBackground movieId={mainMovie.id} />
     </div>
