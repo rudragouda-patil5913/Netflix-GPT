@@ -1,15 +1,10 @@
 import React from "react";
-import React from "react";
 import { useSelector } from "react-redux";
 import { auth } from "../utils/firebase";
 import { signOut } from "firebase/auth";
 import { NFX_LOGO, SUPPORTED_LANGUAGES } from "../utils/constant";
 import { addToggleGptSearchView } from "../utils/gptSearchSlice";
 import { changeLanguage } from "../utils/configSlice";
-import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import usePathHook from "../hooks/usePathHook";
-import { removeUser } from "../utils/userSlice";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import usePathHook from "../hooks/usePathHook";
@@ -20,9 +15,6 @@ const Header = () => {
   const user = useSelector((store) => store.user);
   const gptToggle = useSelector((store) => store.gptsearch.gptToggleSearch);
 
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  usePathHook("/browse");
   const navigate = useNavigate();
   const dispatch = useDispatch();
   usePathHook("/browse");
@@ -46,9 +38,7 @@ const Header = () => {
     dispatch(addToggleGptSearchView());
   };
 
-
   return (
-    <div className="flex flex-row justify-between w-screen px-8 py-2 bg-gradient-to-b from-black absolute z-20 opacity-100">
     <div className="flex flex-col bg-black w-screen md:flex-row justify-between px-8 py-2 bg-gradient-to-b from-black absolute z-20 opacity-100">
       <img className="w-44" src={NFX_LOGO} alt="logo" />
       {user && (
@@ -66,12 +56,6 @@ const Header = () => {
               ))}
             </select>
           )}
-          <button
-            className="p-2 bg-slate-300 m-4 font-bold rounded-xl w-40 h-10"
-            onClick={handleGptSearchClick}>
-            {gptToggle ? "Home" : "Search Movies"}
-          </button>
-          <h1 className="font-bold m-4 p-2 bg-blue-300 h-10 w-16 text-center rounded-full">
           <Link to="/browse">
             <button
               className="p-0 md:p-2 bg-slate-300 m-1 md:m-4 font-semibold md:font-bold rounded-xl w-40 h-10"
